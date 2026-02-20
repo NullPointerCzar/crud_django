@@ -4,7 +4,7 @@ from .models import Employee
 
 def home(request):
     Employees = Employee.objects.all()
-    return render(request, "home.html", {'Employees': Employees})
+    return render(request, "home.html", {'mem': Employees})
 
 def create_view(request):
     return render(request, "create.html")
@@ -22,7 +22,7 @@ def create_emp(request):
 
 def update_view(request, id):
     employee = get_object_or_404(Employee, id=id)
-    return render(request, "update.html", {"employee": employee})
+    return render(request, "update.html", {"mem": employee})
 
 def update_emp(request, id):
     employee = get_object_or_404(Employee, id=id)
@@ -33,7 +33,7 @@ def update_emp(request, id):
         employee.emp_dept = request.POST.get("emp_dept", employee.emp_dept)
         employee.save()
         return redirect("/")
-    return render(request, "update.html", {'employee':employee})
+    return render(request, "update.html", {'mem': employee})
 
 def delete(request, id):
     employee = get_object_or_404(Employee, id=id)
